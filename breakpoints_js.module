@@ -14,7 +14,6 @@ function breakpoints_js_page_build(&$page) {
 
   $module_path = drupal_get_path('module', 'breakpoints_js');
 
-  // @todo: attachment of libraries isn't working, we should use it.
   libraries_load('enquire');
   libraries_load('matchMedia');
 
