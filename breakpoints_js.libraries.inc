@@ -11,7 +11,6 @@
 function breakpoints_js_libraries_info() {
   $libraries = array();
 
-  // enquire.js
   $libraries['enquire'] = array(
     'name' => 'enquire.js',
     'vendor url' => 'http://wicky.nillia.ms/enquire.js/',
@@ -26,7 +25,6 @@ function breakpoints_js_libraries_info() {
     ),
   );
 
-  // matchMedia
   $libraries['matchMedia'] = array(
     'name' => 'matchMedia',
     'vendor url' => 'https://github.com/paulirish/matchMedia.js/',
