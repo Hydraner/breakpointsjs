@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Breakpoints JS
+ */
+
+module_load_include('inc', 'breakpoints_js', 'breakpoints_js.libraries');
+
+/**
+ * Implements hook_page_build().
+ */
+function breakpoints_js_page_build(&$page) {
+
+  $module_path = drupal_get_path('module', 'breakpoints_js');
+
+  // @todo: attachment of libraries isn't working, we should use it.
+  libraries_load('enquire');
+  libraries_load('matchMedia');
+
+  // Add active breakpoints to settings.
+  $page['content']['#attached']['js'][] = array(
+    'data' => array(
+      'breakpoints' => breakpoints_breakpoint_load_all_active(),
+    ),
+    'type' => 'setting',
+    'every_page' => TRUE,
+  );
+
+  // Add breakpoint/enquire integration.
+  $page['content']['#attached']['js'][$module_path . '/js/breakpoints.js'] = array(
+    'group' => JS_THEME,
+    'every_page' => TRUE,
+  );
+}
