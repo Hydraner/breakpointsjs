@@ -1,4 +1,3 @@
-
 /**
  * @file
  * Breakpoints JavaScript API.
