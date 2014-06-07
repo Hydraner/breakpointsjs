@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Breakpoints JS Libraries API Implementations
+ * Breakpoints JS Libraries API Implementations.
  */
 
 /**

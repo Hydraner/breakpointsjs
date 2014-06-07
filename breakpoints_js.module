@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Breakpoints JS
+ * Breakpoints JS.
  */
 
 module_load_include('inc', 'breakpoints_js', 'breakpoints_js.libraries');
