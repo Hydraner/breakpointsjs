@@ -4,4 +4,3 @@ core = 7.x
 package = Breakpoints
 dependencies[] = breakpoints
 dependencies[] = libraries
-files[] = breakpoints_js.module
