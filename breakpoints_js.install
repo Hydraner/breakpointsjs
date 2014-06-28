@@ -34,7 +34,7 @@ function breakpoints_js_requirements($phase) {
       'severity' => REQUIREMENT_WARNING,
     );
 
-    foreach ($requirements as $name => &$requirement) {
+    foreach ($requirements as &$requirement) {
       if (!empty($requirement['callback'])) {
         $requirement['callback']($requirement, $requirements);
       }
