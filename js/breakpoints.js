@@ -59,7 +59,9 @@ function getBreakpoints(breakpoint, machineOnly) {
   if (!$.isArray(breakpoints)) {
 
     // Handle breakpoint object as argument.
-    if (breakpoints && breakpoints.breakpoint) return [breakpoints];
+    if (breakpoints && breakpoints.breakpoint) {
+      return [breakpoints];
+    }
 
     // Handler errors elegantly.
     throw new Error('Expecting array of breakpoint names, received a variable of type "' + typeof breakpoints + '"');
