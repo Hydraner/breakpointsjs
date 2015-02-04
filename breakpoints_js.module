@@ -26,7 +26,6 @@ function breakpoints_js_page_build(&$page) {
 
   // Add breakpoint/enquire integration.
   $page['content']['#attached']['js'][$module_path . '/js/breakpoints.js'] = array(
-    'group' => JS_THEME,
     'every_page' => TRUE,
   );
 }
