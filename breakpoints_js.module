@@ -12,8 +12,8 @@ function breakpoints_js_page_build(&$page) {
 
   $module_path = drupal_get_path('module', 'breakpoints_js');
 
-  libraries_load('enquire');
   libraries_load('matchMedia');
+  libraries_load('enquire');
 
   // Add active breakpoints to settings.
   $page['content']['#attached']['js'][] = array(
