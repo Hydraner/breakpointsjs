@@ -89,7 +89,8 @@
      * Enquire register wrapper.
      * Use the same arguments provided the enquire.register method, but replace
      * the mediaQuery string by the breakpoint name/machine-name or a array of
-     * media query. Also, give it 'all' to register for all breakpoints.
+     * media query. To register for all breakpoints at once, you can use
+     * the tring [all] as the breakpoint value.
      *
      * Please, refer to http://wicky.nillia.ms/enquire.js/#api.
      */
@@ -102,7 +103,8 @@
      * Enquire unregister wrapper.
      * Use the same arguments provided the enquire.unregister method, but replace
      * the mediaQuery string by the breakpoint name/machine-name or a array of
-     * media query. Also, give it 'all' to unregister for all breakpoints.
+     * media query. To unregister for all breakpoints at once, you can use
+     * the tring [all] as the breakpoint value.
      *
      * Please, refer to http://wicky.nillia.ms/enquire.js/#api.
      */
