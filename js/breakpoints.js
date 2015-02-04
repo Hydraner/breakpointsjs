@@ -95,8 +95,8 @@
      *
      * Please, refer to http://wicky.nillia.ms/enquire.js/#api.
      */
-    register: function (breakpoint, handler) {
-      enquire.register(getMediaQuery(breakpoint), handler);
+    register: function (breakpoint, handler, shouldDegrade) {
+      enquire.register(getMediaQuery(breakpoint), handler, shouldDegrade);
       return Breakpoints;
     },
 
