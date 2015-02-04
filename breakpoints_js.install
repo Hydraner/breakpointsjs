@@ -5,8 +5,6 @@
  * Contains install and update functions for breakpoints_js.
  */
 
-module_load_include('inc', 'breakpoints_js', 'breakpoints_js.libraries');
-
 /**
  * Implements hook_requirements().
  */
@@ -48,7 +46,10 @@ function breakpoints_js_requirements($phase) {
  * Requirement validator for enquire.js library.
  */
 function _breakpoints_js_requirement_enquire(&$requirement, &$requirements) {
+
+  module_load_include('module', 'breakpoints_js', 'breakpoints_js');
   $library_version = breakpoints_js_libraries_enquire_version();
+
   if (!empty($library_version)) {
     $requirement['severity'] = REQUIREMENT_OK;
   }
@@ -58,7 +59,10 @@ function _breakpoints_js_requirement_enquire(&$requirement, &$requirements) {
  * Requirement validator for matchMedia library.
  */
 function _breakpoints_js_requirement_matchmedia(&$requirement, &$requirements) {
+
+  module_load_include('module', 'breakpoints_js', 'breakpoints_js');
   $library_version = breakpoints_js_libraries_matchmedia_version();
+
   if (!empty($library_version)) {
     $requirement['severity'] = REQUIREMENT_OK;
   }
