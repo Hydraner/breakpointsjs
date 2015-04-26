@@ -8,8 +8,8 @@
 /**
  * Implements hook_page_build().
  */
-function breakpoints_js_page_build(&$page) {
-  $module_path = drupal_get_path('module', 'breakpoints_js');
+function breakpointsjs_page_build(&$page) {
+  $module_path = drupal_get_path('module', 'breakpointsjs');
 
   libraries_load('matchMedia');
   libraries_load('enquire');
@@ -32,14 +32,14 @@ function breakpoints_js_page_build(&$page) {
 /**
  * Implements hook_libraries_info().
  */
-function breakpoints_js_libraries_info() {
+function breakpointsjs_libraries_info() {
   $libraries = array();
 
   $libraries['enquire'] = array(
     'name' => 'enquire.js',
     'vendor url' => 'http://wicky.nillia.ms/enquire.js/',
     'download url' => 'https://github.com/WickyNilliams/enquire.js/zipball/master',
-    'version callback' => 'breakpoints_js_libraries_enquire_version',
+    'version callback' => 'breakpointsjs_libraries_enquire_version',
     'files' => array(
       'js' => array(
         'dist/enquire.min.js' => array(
@@ -53,7 +53,7 @@ function breakpoints_js_libraries_info() {
     'name' => 'matchMedia',
     'vendor url' => 'https://github.com/paulirish/matchMedia.js/',
     'download url' => 'https://github.com/paulirish/matchMedia.js/zipball/master',
-    'version callback' => 'breakpoints_js_libraries_matchmedia_version',
+    'version callback' => 'breakpointsjs_libraries_matchmedia_version',
     'files' => array(
       'js' => array(
         'matchMedia.js' => array(
@@ -72,7 +72,7 @@ function breakpoints_js_libraries_info() {
 /**
  * Callback for enquire.js library version.
  */
-function breakpoints_js_libraries_enquire_version($library = array()) {
+function breakpointsjs_libraries_enquire_version($library = array()) {
   $package_json = libraries_get_path('enquire') . '/package.json';
 
   if (!file_exists($package_json)) {
@@ -87,7 +87,7 @@ function breakpoints_js_libraries_enquire_version($library = array()) {
 /**
  * Callback for matchMedia library version.
  */
-function breakpoints_js_libraries_matchmedia_version($library = array()) {
+function breakpointsjs_libraries_matchmedia_version($library = array()) {
   $bower_json = libraries_get_path('matchMedia') . '/bower.json';
 
   if (!file_exists($bower_json)) {

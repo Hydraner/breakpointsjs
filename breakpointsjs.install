@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Contains install and update functions for breakpoints_js.
+ * Contains install and update functions for BreakpointsJS.
  */
 
 /**
  * Implements hook_requirements().
  */
-function breakpoints_js_requirements($phase) {
+function breakpointsjs_requirements($phase) {
 
   $requirements = array();
 
@@ -20,7 +20,7 @@ function breakpoints_js_requirements($phase) {
     $requirements['enquire_library'] = array(
       'title' => $t('Enquire.js library'),
       'description' => $t('Breakpoints JS requires enquire.js library to be installed.'),
-      'callback' => '_breakpoints_js_requirement_enquire',
+      'callback' => '_breakpointsjs_requirement_enquire',
       'severity' => REQUIREMENT_ERROR,
     );
 
@@ -28,7 +28,7 @@ function breakpoints_js_requirements($phase) {
     $requirements['matchmedia_polyfill'] = array(
       'title' => $t('Polyfill for matchMedia'),
       'description' => $t('Cannot find matchMedia library. Breakpoints JS uses matchMedia polyfill to address legacy browsers.'),
-      'callback' => '_breakpoints_js_requirement_matchmedia',
+      'callback' => '_breakpointsjs_requirement_matchmedia',
       'severity' => REQUIREMENT_WARNING,
     );
 
@@ -45,10 +45,10 @@ function breakpoints_js_requirements($phase) {
 /**
  * Requirement validator for enquire.js library.
  */
-function _breakpoints_js_requirement_enquire(&$requirement, &$requirements) {
+function _breakpointsjs_requirement_enquire(&$requirement, &$requirements) {
 
-  module_load_include('module', 'breakpoints_js', 'breakpoints_js');
-  $library_version = breakpoints_js_libraries_enquire_version();
+  module_load_include('module', 'breakpointsjs', 'breakpointsjs');
+  $library_version = breakpointsjs_libraries_enquire_version();
 
   if (!empty($library_version)) {
     $requirement['severity'] = REQUIREMENT_OK;
@@ -58,10 +58,10 @@ function _breakpoints_js_requirement_enquire(&$requirement, &$requirements) {
 /**
  * Requirement validator for matchMedia library.
  */
-function _breakpoints_js_requirement_matchmedia(&$requirement, &$requirements) {
+function _breakpointsjs_requirement_matchmedia(&$requirement, &$requirements) {
 
-  module_load_include('module', 'breakpoints_js', 'breakpoints_js');
-  $library_version = breakpoints_js_libraries_matchmedia_version();
+  module_load_include('module', 'breakpointsjs', 'breakpointsjs');
+  $library_version = breakpointsjs_libraries_matchmedia_version();
 
   if (!empty($library_version)) {
     $requirement['severity'] = REQUIREMENT_OK;
