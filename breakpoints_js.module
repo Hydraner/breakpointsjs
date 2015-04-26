@@ -9,7 +9,6 @@
  * Implements hook_page_build().
  */
 function breakpoints_js_page_build(&$page) {
-
   $module_path = drupal_get_path('module', 'breakpoints_js');
 
   libraries_load('matchMedia');
@@ -34,7 +33,6 @@ function breakpoints_js_page_build(&$page) {
  * Implements hook_libraries_info().
  */
 function breakpoints_js_libraries_info() {
-
   $libraries = array();
 
   $libraries['enquire'] = array(
@@ -75,7 +73,6 @@ function breakpoints_js_libraries_info() {
  * Callback for enquire.js library version.
  */
 function breakpoints_js_libraries_enquire_version($library = array()) {
-
   $package_json = libraries_get_path('enquire') . '/package.json';
 
   if (!file_exists($package_json)) {
@@ -91,7 +88,6 @@ function breakpoints_js_libraries_enquire_version($library = array()) {
  * Callback for matchMedia library version.
  */
 function breakpoints_js_libraries_matchmedia_version($library = array()) {
-
   $bower_json = libraries_get_path('matchMedia') . '/bower.json';
 
   if (!file_exists($bower_json)) {
