@@ -1,0 +1,13 @@
+enquire:
+  version: 2.1.2
+  js:
+    assets/enquire/dist/enquire.js: {}
+breakpointsjs:
+  version: 0
+  js:
+    js/breakpoints.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - breakpointsjs/enquire

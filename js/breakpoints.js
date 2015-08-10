@@ -59,7 +59,7 @@
     if (!$.isArray(breakpoints)) {
 
       // Handle breakpoint object as argument.
-      if (breakpoints && breakpoints.breakpoint) {
+      if (breakpoints && breakpoints.media_query) {
         return [breakpoints];
       }
 
@@ -120,7 +120,7 @@
      */
     getCurrent: function () {
       return getBreakpoints('all').filter(function (breakpoint) {
-        return window.matchMedia(breakpoint.breakpoint).matches;
+        return window.matchMedia(breakpoint.media_query).matches;
       });
     },
 
@@ -138,4 +138,4 @@
   // Consider any previous existence of Breakpoints object.
   Drupal.Breakpoints = $.extend(true, Breakpoints, Drupal.Breakpoints);
 
-})(this, this.document, jQuery, enquire, Drupal.settings);
+})(this, this.document, jQuery, enquire, drupalSettings);

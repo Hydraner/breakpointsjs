@@ -1,36 +1,34 @@
 <?php
 
+use Drupal\Component\Serialization\Json;
+
 /**
  * @file
  * Breakpoints JS.
  */
 
 /**
- * Implements hook_page_build().
+ * Implements hook_page_attachments().
  */
-function breakpointsjs_page_build(&$page) {
-  $module_path = drupal_get_path('module', 'breakpointsjs');
+function breakpointsjs_page_attachments(array &$attachments) {
+  $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+  $attachments['#attached']['library'][] = 'breakpointsjs/breakpointsjs';
+  $theme_breakpoints = \Drupal::service('breakpoint.manager')->getBreakpointsByGroup($theme_name);
 
-  libraries_load('matchMedia');
-  libraries_load('enquire');
+  $settings = array();
+  foreach ($theme_breakpoints as $breakpoint) {
+    $settings[$breakpoint->getLabel()]['name'] = $breakpoint->getLabel();
+    $settings[$breakpoint->getLabel()]['media_query'] = $breakpoint->getMediaQuery();
+    $settings[$breakpoint->getLabel()]['multipliers'] = $breakpoint->getMultipliers();
+  }
 
-  // Add active breakpoints to settings.
-  $page['content']['#attached']['js'][] = array(
-    'data' => array(
-      'breakpoints' => breakpoints_breakpoint_load_all_active(),
-    ),
-    'type' => 'setting',
-    'every_page' => TRUE,
-  );
-
-  // Add breakpoint/enquire integration.
-  $page['content']['#attached']['js'][$module_path . '/js/breakpoints.js'] = array(
-    'every_page' => TRUE,
-  );
+  $attachments['#attached']['drupalSettings']['breakpoints'] = $settings;
 }
 
 /**
  * Implements hook_libraries_info().
+ *
+ * @todo: Keep track of libraries api, it us currently totally broken.
  */
 function breakpointsjs_libraries_info() {
   $libraries = array();
@@ -49,28 +47,13 @@ function breakpointsjs_libraries_info() {
     ),
   );
 
-  $libraries['matchMedia'] = array(
-    'name' => 'matchMedia',
-    'vendor url' => 'https://github.com/paulirish/matchMedia.js/',
-    'download url' => 'https://github.com/paulirish/matchMedia.js/zipball/master',
-    'version callback' => 'breakpointsjs_libraries_matchmedia_version',
-    'files' => array(
-      'js' => array(
-        'matchMedia.js' => array(
-          'every_page' => TRUE,
-        ),
-        'matchMedia.addListener.js' => array(
-          'every_page' => TRUE,
-        ),
-      ),
-    ),
-  );
-
   return $libraries;
 }
 
 /**
  * Callback for enquire.js library version.
+ *
+ * @todo: Keep track of libraries api, it us currently totally broken.
  */
 function breakpointsjs_libraries_enquire_version($library = array()) {
   $package_json = libraries_get_path('enquire') . '/package.json';
@@ -79,22 +62,7 @@ function breakpointsjs_libraries_enquire_version($library = array()) {
     return NULL;
   }
 
-  $decoded_json = drupal_json_decode(file_get_contents($package_json, TRUE));
-
-  return empty($decoded_json['version']) ? NULL : $decoded_json['version'];
-}
-
-/**
- * Callback for matchMedia library version.
- */
-function breakpointsjs_libraries_matchmedia_version($library = array()) {
-  $bower_json = libraries_get_path('matchMedia') . '/bower.json';
-
-  if (!file_exists($bower_json)) {
-    return NULL;
-  }
-
-  $decoded_json = drupal_json_decode(file_get_contents($bower_json, TRUE));
+  $decoded_json = JSON::decode(file_get_contents($package_json, TRUE));
 
   return empty($decoded_json['version']) ? NULL : $decoded_json['version'];
 }

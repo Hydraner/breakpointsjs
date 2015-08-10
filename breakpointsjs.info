@@ -1,6 +1,0 @@
-name = Breakpoints JS
-description = Breakpoint JavaScript interface based on enquire.js.
-core = 7.x
-package = Breakpoints
-dependencies[] = breakpoints
-dependencies[] = libraries

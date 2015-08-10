@@ -1,0 +1,7 @@
+type: module
+name: Breakpoints JS
+description: Breakpoint JavaScript interface based on enquire.js.
+core: 8.x
+dependencies:
+# - libraries
+ - breakpoint
