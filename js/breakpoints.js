@@ -24,13 +24,13 @@
   function getBreakpointByName(name, machineOnly) {
 
     if (settings.breakpoints[name]) {
-      return settings.breakpoints[name];
+      return settings.breakpoints[name].media_query;
     }
 
     if (machineOnly === false) {
       for (var s in settings.breakpoints) {
         if (settings.breakpoints[s].name.toLowerCase() == name.toLowerCase()) {
-          return settings.breakpoints[s];
+          return settings.breakpoints[s].media_query;
         }
       }
     }
@@ -79,7 +79,7 @@
    */
   function getMediaQuery(breakpoints) {
     return getBreakpoints(breakpoints).map(function (breakpoint) {
-      return breakpoint.breakpoint;
+      return breakpoint;
     }).join(', ') || (typeof breakpoints == 'string' ? breakpoints : '');
   }
 
@@ -120,7 +120,7 @@
      */
     getCurrent: function () {
       return getBreakpoints('all').filter(function (breakpoint) {
-        return window.matchMedia(breakpoint.media_query).matches;
+        return window.matchMedia(breakpoint).matches;
       });
     },
 
