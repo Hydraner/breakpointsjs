@@ -17,9 +17,9 @@ function breakpointsjs_page_attachments(array &$attachments) {
 
   $settings = array();
   foreach ($theme_breakpoints as $breakpoint) {
-    $settings[$breakpoint->getLabel()]['name'] = $breakpoint->getLabel();
-    $settings[$breakpoint->getLabel()]['media_query'] = $breakpoint->getMediaQuery();
-    $settings[$breakpoint->getLabel()]['multipliers'] = $breakpoint->getMultipliers();
+    $settings[(string) $breakpoint->getLabel()]['name'] = (string) $breakpoint->getLabel();
+    $settings[(string) $breakpoint->getLabel()]['media_query'] = $breakpoint->getMediaQuery();
+    $settings[(string) $breakpoint->getLabel()]['multipliers'] = $breakpoint->getMultipliers();
   }
 
   $attachments['#attached']['drupalSettings']['breakpoints'] = $settings;
